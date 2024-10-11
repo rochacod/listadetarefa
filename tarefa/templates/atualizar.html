@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Tarefa</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"> <!-- Adicionado para ícones -->
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            max-width: 600px;
+            width: 100%;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e0e0e0;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        table {
+            width: 100%;
+            margin-bottom: 20px;
+            border-collapse: collapse;
+        }
+        table td, table th {
+            border: 1px solid #ddd;
+            padding: 12px;
+        }
+        input[type="submit"] {
+            background-color: #0084ff;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: background-color 0.3s ease, transform 0.2s;
+            font-weight: bold;
+        }
+        input[type="submit"]:hover {
+            background-color: #0073e6;
+            transform: scale(1.05);
+        }
+        .buttons-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .btn-secondary {
+            background-color: #95a5a6;
+            color: white;
+            padding: 12px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 16px;
+            border: none;
+            width: 48%;
+            transition: background-color 0.3s ease, transform 0.2s;
+            font-weight: bold;
+        }
+        .btn-secondary:hover {
+            background-color: #7f8c8d;
+            transform: scale(1.05);
+        }
+        /* Adicionar ícones */
+        .fa-save {
+            margin-right: 8px;
+        }
+        .fa-times-circle {
+            margin-right: 8px;
+        }
+        /* Estilo dos campos */
+        input[type="text"], input[type="password"], textarea, select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+            box-sizing: border-box; /* Adicionado para incluir o padding e a borda na largura */
+            transition: border-color 0.3s ease;
+        }
+        input[type="text"]::placeholder, input[type="password"]::placeholder, textarea::placeholder {
+            color: #999;
+        }
+        input[type="text"]:focus, input[type="password"]:focus, textarea:focus, select:focus {
+            border-color: #0084ff;
+            outline: none;
+        }
+        /* Mensagem de feedback */
+        .success-message {
+            color: #27ae60;
+            text-align: center;
+            margin-top: 15px;
+            font-size: 18px;
+        }
+        .error-message {
+            color: #e74c3c;
+            text-align: center;
+            margin-top: 15px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% block content %}
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h1>Editar Tarefa</h1>
+            <table>
+                {{ form.as_table }}
+            </table>
+            <div class="buttons-container">
+                <input type="submit" value="Salvar Alterações">
+                <a href="{% url 'lista' %}" class="btn-secondary"><i class="fas fa-times-circle"></i>Cancelar</a>
+            </div>
+            {% if messages %}
+            <div class="feedback-container">
+                {% for message in messages %}
+                    <p class="{% if message.tags == 'success' %}success-message{% else %}error-message{% endif %}">
+                        {{ message }}
+                    </p>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </form>
+        {% endblock %}
+    </div>
+</body>
+</html>
