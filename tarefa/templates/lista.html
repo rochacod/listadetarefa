@@ -41,11 +41,11 @@
             margin: 15px 0;
             cursor: pointer;
             border-radius: 5px;
-            transition: background-color 0.3s ease, transform 0.3s ease; /* Adicionada transição para zoom */
+            transition: background-color 0.3s ease, transform 0.3s ease; 
         }
         button:hover {
             background-color: #365899;
-            transform: scale(1.05); /* Efeito de zoom */
+            transform: scale(1.05); 
         }
         button a {
             color: white;
@@ -55,8 +55,8 @@
             list-style-type: none;
             padding: 0;
             margin: 0;
-            max-height: 300px; /* Definindo a altura máxima da lista */
-            overflow-y: auto; /* Adicionando rolagem vertical */
+            max-height: 300px; 
+            overflow-y: auto; 
         }
         li {
             background-color: #f7f7f7;
@@ -73,10 +73,10 @@
             text-decoration: none;
             color: #4267B2;
             font-weight: bold;
-            transition: transform 0.3s ease; /* Adicionada transição para zoom */
+            transition: transform 0.3s ease; 
         }
         li a:hover {
-            transform: scale(1.1); /* Efeito de zoom ao passar o mouse */
+            transform: scale(1.1); 
         }
         .search-bar {
             margin-bottom: 20px;
@@ -112,7 +112,7 @@
     <div class="container">
         <h1>Lista de Tarefas</h1>
 
-        <!-- Formulário de busca -->
+       
         <form method="GET" action="" class="search-bar">
             <input type="text" name="query" placeholder="Buscar tarefa..." value="{{ request.GET.query }}">
             <input type="submit" value="Buscar">
@@ -126,7 +126,7 @@
             {% if tarefas %}
             {% for tarefa in tarefas %}
             <li>
-                <a href="{% url 'deletar' tarefa.pk %}">{{ tarefa.nome_tarefa }}</a> <!-- Link para a página de deletar -->
+                <a href="{% url 'deletar' tarefa.pk %}">{{ tarefa.nome_tarefa }}</a> 
             </li>
             {% endfor %}
             {% else %}
